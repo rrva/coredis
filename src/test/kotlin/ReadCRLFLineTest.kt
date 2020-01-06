@@ -1,4 +1,7 @@
 import io.ktor.util.cio.write
+import java.io.IOException
+import java.nio.ByteBuffer
+import java.nio.CharBuffer
 import kotlinx.coroutines.async
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.io.ByteChannel
@@ -7,9 +10,6 @@ import kotlinx.coroutines.runBlocking
 import org.junit.Assert
 import org.junit.Test
 import se.rrva.coredis.protocol.readCRLFLine
-import java.io.IOException
-import java.nio.ByteBuffer
-import java.nio.CharBuffer
 
 class ReadCRLFLineTest {
 
@@ -106,11 +106,9 @@ class ReadCRLFLineTest {
                 bc.write("\r\n")
                 bc.flush()
             }
-            val (line1, _) =  bc.readCRLFLine(buf, cb, charsetDecoder)
+            val (line1, _) = bc.readCRLFLine(buf, cb, charsetDecoder)
 
             Assert.assertEquals("hello", line1)
         }
-
     }
-
 }

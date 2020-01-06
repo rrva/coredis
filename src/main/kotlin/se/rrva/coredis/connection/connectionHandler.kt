@@ -1,5 +1,9 @@
 package se.rrva.coredis.connection
 
+import java.io.IOException
+import java.nio.ByteBuffer
+import java.nio.CharBuffer
+import java.util.concurrent.atomic.AtomicInteger
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.TimeoutCancellationException
 import kotlinx.coroutines.channels.Channel
@@ -16,10 +20,6 @@ import org.slf4j.LoggerFactory
 import se.rrva.coredis.protocol.RedisParser
 import se.rrva.coredis.protocol.readCRLFLine
 import se.rrva.coredis.protocol.writeRedisCommand
-import java.io.IOException
-import java.nio.ByteBuffer
-import java.nio.CharBuffer
-import java.util.concurrent.atomic.AtomicInteger
 
 private val log = LoggerFactory.getLogger("sendRedisCommands")
 private val utf8 = Charsets.UTF_8
@@ -159,7 +159,6 @@ class RedisReader(private val readChannel: ByteReadChannel) {
     fun isOpenForRead(): Boolean {
         return !readChannel.isClosedForRead
     }
-
 }
 
 sealed class RedisReply {

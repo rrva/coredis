@@ -3,6 +3,8 @@ package se.rrva.coredis.connection
 import io.mockk.coEvery
 import io.mockk.every
 import io.mockk.mockk
+import java.io.IOException
+import java.util.concurrent.atomic.AtomicInteger
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.debug.junit4.CoroutinesTimeout
 import kotlinx.coroutines.io.ByteWriteChannel
@@ -10,11 +12,8 @@ import kotlinx.coroutines.runBlocking
 import org.junit.Assert
 import org.junit.Rule
 import org.junit.Test
-import java.io.IOException
-import java.util.concurrent.atomic.AtomicInteger
 
 class ConnectionHandlerTest {
-
 
     @Rule
     @JvmField
@@ -67,7 +66,6 @@ class ConnectionHandlerTest {
             commandChannel.close()
             Assert.assertEquals("PONG", commandResponse.data)
         }
-
     }
 
     @Test
