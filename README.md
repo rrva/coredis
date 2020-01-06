@@ -9,7 +9,7 @@ and Channels, not very well tested.
 Create a client instance:
 
 ```kotlin
-val redis = Redis(InetSocketAddress("localhost", 6379))
+val redis = RedisClient(InetSocketAddress("localhost", 6379))
 ```
 
 The instance manages its own connection pool, auto-scales 
@@ -29,20 +29,26 @@ Get a key, decodes data as UTF-8
 val stringValue = redis.get("somekey")
 ```
 
-# Supported redis commands
+## Supported redis commands
 
-`setex` set a key with expire time in seconds
-`del(key)`: delete a key
-`ping(echomsg)` - ping the redis server, accepts optional text to echo back
-`ttl(key)` - show the ttl of a key
+- `setex` set a key with expire time in seconds
+- `del(key)`: delete a key
+- `ping(echomsg)` - ping the redis server, accepts optional text to echo back
+- `ttl(key)` - show the ttl of a key
 
-# Configuration
+## Configuration
 
-The `Redis` class supports 
+The RedisClient class supports the following constructor parameters:
 
-TODO
+- `address` Redis server address
+- `commandTimeoutMillis` timeout for sending commands
+- `replyTimeoutMillis` timeout for waiting to read a reply
+- `dbIndex` select another redis database for all connections other than 0
+- `maxPoolSize` Maximum number of connections to open
 
-- Needs more tests. Missing tests of the parser, error/timeout handling, concurrency safety tests. This is alpha quality.
+## TODO
+
+- Needs more test coverage. This is alpha quality, has not been used in production yet.
 - Redesign the error handling and possibly add more timeouts
 - Better reconnect and pooling logic
 - Support setting and getting byte arrays in addition to utf-8 strings
