@@ -2,7 +2,7 @@
 
 A kotlin redis client based on non-blocking I/O with coroutines.
 This is just some experimental code I wrote when learning about coroutines
-and Channels, not very well tested.
+and channels, not very complete or well tested in any production system.
 
 ## Usage
 
@@ -17,7 +17,7 @@ upto default 50 connections. It uses redis command pipelining
 to possibly send multiple commands on the same connection 
 before a reply has been received.
 
-Set a key, (a supending function). Encodes strings as UTF-8.
+Set a key, (a suspending function). Encodes strings as UTF-8.
 
 ```kotlin
 redis.set("somekey", "somevalue")
@@ -31,6 +31,8 @@ val stringValue = redis.get("somekey")
 
 ## Supported redis commands
 
+- `get` get a key, decoded as a utf8 string
+- `set` set a key
 - `setex` set a key with expire time in seconds
 - `del(key)`: delete a key
 - `ping(echomsg)` - ping the redis server, accepts optional text to echo back
