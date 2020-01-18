@@ -29,6 +29,27 @@ Get a key, decodes data as UTF-8
 val stringValue = redis.get("somekey")
 ```
 
+## Depend on it
+
+add to your `build.gradle`
+
+```
+repositories {
+    ...
+    maven { url 'https://jitpack.io' }
+}
+```
+
+and in your dependencies section:
+
+```
+dependencies {
+    implementation 'com.github.rrva:coredis:0.1.0'
+}
+```
+
+
+
 ## Supported redis commands
 
 - `get` get a key, decoded as a utf8 string
