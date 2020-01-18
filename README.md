@@ -44,7 +44,7 @@ and in your dependencies section:
 
 ```
 dependencies {
-    implementation 'com.github.rrva:coredis:0.1.0'
+    implementation 'com.github.rrva:coredis:0.1.1'
 }
 ```
 
